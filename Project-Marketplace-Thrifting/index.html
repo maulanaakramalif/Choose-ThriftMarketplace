@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="/css/scss.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+            <div class="container">
+                <a class="navbar-brand tm-logo me-lg-4" href="#beranda"
+                    aria-label="Thrift Marketplace – kembali ke beranda">
+                    thrift<span class="tm-logo-dot"></span>
+                    <small class="tm-logo-sub">MARKETPLACE</small>
+                </a>
+
+                <div class="d-flex align-items-center gap-1 order-lg-last">
+                    <a href="#jual"
+                        class="btn btn-lime btn-sm fw-bold rounded-pill px-3 d-none d-sm-inline-flex align-items-center gap-1 me-1"
+                        data-bs-toggle="modal" data-bs-target="#sellModal">
+                        <i class="bi bi-plus-lg"></i> Jual Barang
+                    </a>
+                    <button class="btn tm-icon-btn position-relative" type="button" id="btnWishlist"
+                        aria-label="Wishlist">
+                        <i class="bi bi-heart"></i>
+                        <span class="badge rounded-pill tm-badge d-none" id="wishlistCount">0</span>
+                    </button>
+                    <button class="btn tm-icon-btn position-relative" type="button" data-bs-toggle="modal"
+                        data-bs-target="#chatModal" data-product="Obrolan umum" data-price="" aria-label="Pesan">
+                        <ion-icon name="chatbubbles"></ion-icon>
+                        <span class="badge rounded-pill tm-badge position-absolute top-0 end-0">2</span>
+                    </button>
+                    <div class="dropdown d-none d-sm-block">
+                        <button class="btn tm-icon-btn position-relative" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" aria-label="Notifikasi">
+                            <ion-icon name="chatbox-ellipses"></ion-icon>
+                            <span class="badge rounded-pill tm-badge position-absolute top-0 end-0">3</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 tm-notif">
+                            <li>
+                                <h6 class="dropdown-header">Notifikasi</h6>
+                            </li>
+                            <li><a class="dropdown-item small text-wrap" href="#"><i
+                                        class="bi bi-tag text-success me-2"></i>Penjual
+                                    menurunkan harga Jaket Denim di wishlist kamu.</a></li>
+                            <li><a class="dropdown-item small text-wrap" href="#"><i
+                                        class="bi bi-chat-left-text text-success me-2"></i>Tawaran kamu untuk Nike Air
+                                    Max dibalas.</a></li>
+                            <li><a class="dropdown-item small text-wrap" href="#"><i
+                                        class="bi bi-truck text-success me-2"></i>Pesanan
+                                    #TM-2041 sedang dikirim.</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn tm-icon-btn position-relative" type="button" id="btnCart"
+                        aria-label="Keranjang belanja">
+                        <ion-icon name="cart"></ion-icon>
+                        <span class="badge rounded-pill tm-badge d-none" id="cartCount">0</span>
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn tm-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            aria-label="Profil akun">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profil saya</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-seam me-2"></i>Pesanan</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-shop me-2"></i>Toko saya</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Keluar</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Buka menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Kategori</a>
+                            <ul class="dropdown-menu border-0 shadow">
+                                <li><a class="dropdown-item" href="#produk" data-category="pria"><i
+                                            class="bi bi-person-standing me-2"></i>Pakaian Pria</a></li>
+                                <li><a class="dropdown-item" href="#produk" data-category="wanita"><i
+                                            class="bi bi-person-standing-dress me-2"></i>Pakaian Wanita</a></li>
+                                <li><a class="dropdown-item" href="#produk" data-category="sepatu"><i
+                                            class="bi bi-balloon me-2"></i>Sepatu &amp; Sneakers</a></li>
+                                <li><a class="dropdown-item" href="#produk" data-category="aksesoris"><i
+                                            class="bi bi-watch me-2"></i>Aksesoris</a></li>
+                                <li><a class="dropdown-item" href="#produk" data-category="elektronik"><i
+                                            class="bi bi-headphones me-2"></i>Elektronik</a></li>
+                                <li><a class="dropdown-item" href="#produk" data-category="buku"><i
+                                            class="bi bi-book me-2"></i>Buku</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#produk">Jelajah</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#panduan">Panduan</a></li>
+                        <li class="nav-item d-sm-none">
+                            <a class="nav-link fw-bold text-lime" href="#" data-bs-toggle="modal"
+                                data-bs-target="#sellModal">+ Jual
+                                Barang</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="beranda">
+
+        <!-- ===================== HERO + SEARCH ===================== -->
+        <section class="tm-hero py-5">
+            <div class="container py-lg-4">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-7">
+                        <h1 class="display-4 fw-bold tm-heading text-white mb-3">Barang bekas bagus, cari di satu
+                            tempat.</h1>
+                        <p class="lead text-white-50 mb-4 tm-measure">Jaket vintage, sneakers, kamera, sampai buku
+                            langka dari
+                            penjual terpercaya. Tawar harganya langsung lewat chat.</p>
+
+                        <!-- Search -->
+                        <form class="tm-search bg-white rounded-4 shadow p-2 p-md-3" id="searchForm" role="search">
+                            <div class="input-group input-group-lg mb-2">
+                                <span class="input-group-text bg-transparent border-0 pe-1"><i
+                                        class="bi bi-search text-success"></i></span>
+                                <input type="search" class="form-control border-0 shadow-none" id="searchInput"
+                                    placeholder="Cari jaket vintage, sepatu Nike second, dll." aria-label="Cari barang">
+                                <button class="btn btn-primary rounded-3 px-4" type="submit">Cari</button>
+                            </div>
+
+                            <!-- Quick filter -->
+                            <div class="row g-2 px-1 pb-1">
+                                <div class="col-6 col-md-3">
+                                    <select class="form-select form-select-sm bg-select text-white rounded-5"
+                                        id="filterBrand" aria-label="Brand">
+                                        <option value="semua brand">Semua brand</option>
+                                        <option value="nike">NIKE</option>
+                                        <option value="uniqlo">UNIQLO</option>
+                                        <option value="puma">PUMA</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <select class="form-select form-select-sm bg-select text-white rounded-5"
+                                        id="filterCondition" aria-label="Kondisi barang">
+                                        <option value="">Semua kondisi</option>
+                                        <option value="Seperti baru">Seperti baru</option>
+                                        <option value="Baik">Baik</option>
+                                        <option value="Layak pakai">Layak pakai</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <select class="form-select form-select-sm bg-select text-white rounded-5"
+                                        id="filterCity" aria-label="Lokasi">
+                                        <option value="">Provinsi</option>
+                                        <option value="">Kepulauan Riau</option>
+                                        <option value="">Riau</option>
+                                        <option value="">Jakarta</option>
+                                    </select>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <select class="form-select form-select-sm bg-select text-white rounded-5"
+                                        id="filterPrice" aria-label="Rentang harga">
+                                        <option value="">Semua harga</option>
+                                        <option value="0-100000">Di bawah Rp100 rb</option>
+                                        <option value="100000-300000">Rp100 rb – Rp300 rb</option>
+                                        <option value="300000-700000">Rp300 rb – Rp700 rb</option>
+                                        <option value="700000-999999999">Di atas Rp700 rb</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="d-flex flex-wrap gap-2 mt-3" id="trendingChips">
+                            <span class="text-white-50 small me-1 align-self-center">Sering dicari:</span>
+                            <button type="button" class="btn btn-sm tm-chip" data-search="jaket">jaket</button>
+                            <button type="button" class="btn btn-sm tm-chip" data-search="nike">nike</button>
+                            <button type="button" class="btn btn-sm tm-chip" data-search="kamera">kamera</button>
+                            <button type="button" class="btn btn-sm tm-chip" data-search="denim">denim</button>
+                        </div>
+                    </div>
+
+                    <!-- Hero visual: tumpukan label harga -->
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <div class="tm-hero-stack position-relative" aria-hidden="true">
+                            <div class="tm-tag tm-tag-1"><i class="bi bi-recycle"></i><span>Dipakai lagi, bukan
+                                    dibuang</span></div>
+                            <div class="tm-tag tm-tag-2"><span class="tm-tag-price">Rp185.000</span><span>Jaket denim
+                                    90an</span>
+                            </div>
+                            <div class="tm-tag tm-tag-3"><i class="bi bi-shield-check"></i><span>Garansi 3 hari</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== KATEGORI POPULER ===================== -->
+        <section class="py-5" id="kategori">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <h2 class="h3 tm-heading mb-0">Kategori populer</h2>
+                    <a href="#produk" class="link-success fw-semibold text-decoration-none small" data-category="">Lihat
+                        semua</a>
+                </div>
+                <div class="row row-cols-3 row-cols-md-6 g-3" id="categoryGrid">
+                    <div class="col"><button class="tm-cat card h-100 border-0 w-100 text-center" data-category="pria">
+                            <div class="card-body py-3 px-2"><span class="tm-cat-icon"><ion-icon
+                                        name="shirt"></ion-icon></span><span
+                                    class="d-block small fw-semibold mt-2">Pakaian
+                                    Pria</span></div>
+                        </button></div>
+                    <div class="col"><button class="tm-cat card h-100 border-0 w-100 text-center"
+                            data-category="wanita">
+                            <div class="card-body py-3 px-2"><span class="tm-cat-icon"><ion-icon
+                                        name="bag"></ion-icon></span><span
+                                    class="d-block small fw-semibold mt-2">Pakaian
+                                    Wanita</span></div>
+                        </button></div>
+                    <div class="col"><button class="tm-cat card h-100 border-0 w-100 text-center"
+                            data-category="sepatu">
+                            <div class="card-body py-3 px-2"><span class="tm-cat-icon"><ion-icon
+                                        name="footsteps"></ion-icon></span><span
+                                    class="d-block small fw-semibold mt-2">Sepatu &amp; Sneakers</span></div>
+                        </button></div>
+                    <div class="col"><button class="tm-cat card h-100 border-0 w-100 text-center"
+                            data-category="aksesoris">
+                            <div class="card-body py-3 px-2"><span class="tm-cat-icon"><ion-icon
+                                        name="watch"></ion-icon></span><span
+                                    class="d-block small fw-semibold mt-2">Aksesoris</span></div>
+                        </button></div>
+                    <div class="col"><button class="tm-cat card h-100 border-0 w-100 text-center"
+                            data-category="elektronik">
+                            <div class="card-body py-3 px-2"><span class="tm-cat-icon"><ion-icon
+                                        name="hardware-chip"></ion-icon></span><span
+                                    class="d-block small fw-semibold mt-2">Elektronik</span></div>
+                        </button></div>
+                    <div class="col"><button class="tm-cat card h-100 border-0 w-100 text-center" data-category="buku">
+                            <div class="card-body py-3 px-2"><span class="tm-cat-icon"><ion-icon
+                                        name="book"></ion-icon></span><span
+                                    class="d-block small fw-semibold mt-2">Buku</span></div>
+                        </button></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== PRODUK ===================== -->
+        <section class="pb-5" id="produk">
+            <div class="container">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+                    <div>
+                        <h2 class="h3 tm-heading mb-1">Jelajah produk</h2>
+                        <p class="text-body-secondary mb-0" id="resultInfo">Rekomendasi dan barang yang baru diunggah.
+                        </p>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <span class="badge text-bg-light border d-none align-items-center gap-1"
+                            id="activeCategory"></span>
+                        <select class="form-select form-select-sm w-auto" id="sortSelect" aria-label="Urutkan">
+                            <option value="recommended">Rekomendasi</option>
+                            <option value="newest">Terbaru</option>
+                            <option value="low">Harga terendah</option>
+                            <option value="high">Harga tertinggi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 g-lg-4" id="productGrid"></div>
+
+                <!-- Empty state -->
+                <div class="text-center py-5 d-none" id="emptyState">
+                    <i class="bi bi-search display-4 text-success"></i>
+                    <h3 class="h5 mt-3">Belum ada barang yang cocok</h3>
+                    <p class="text-body-secondary">Coba ganti kata kunci atau hapus beberapa filter.</p>
+                    <button class="btn btn-primary rounded-pill px-4" id="resetFilters">Hapus semua filter</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA JUAL BARANG ===================== -->
+        <section class="pb-5" id="jual">
+            <div class="container">
+                <div class="tm-cta rounded-5 p-4 p-md-5 position-relative overflow-hidden">
+                    <div class="row align-items-center g-4 position-relative">
+                        <div class="col-lg-8">
+                            <h2 class="display-6 tm-heading text-white mb-3">Lemari penuh? Ubah jadi uang.</h2>
+                            <p class="text-white-50 mb-4 tm-measure">Foto barangmu, pasang harga, dan biarkan pembeli
+                                menawar lewat
+                                chat. Tidak ada biaya untuk mengunggah.</p>
+                            <button class="btn btn-lime btn-lg fw-bold rounded-pill px-4" data-bs-toggle="modal"
+                                data-bs-target="#sellModal">
+                                <i class="bi bi-plus-lg me-1"></i> Jual Barang
+                            </button>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-flex justify-content-end">
+                            <div class="tm-cta-badge text-center"><span class="tm-cta-number">0%</span><span
+                                    class="small">biaya
+                                    unggah</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== PANDUAN ===================== -->
+        <section class="pb-5" id="panduan">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <h2 class="h3 tm-heading mb-2">Cara kerja transaksi</h2>
+                        <p class="text-body-secondary mb-4">Empat langkah dari menemukan barang sampai sampai di
+                            tanganmu.</p>
+                        <ol class="list-unstyled tm-steps mb-0">
+                            <li class="d-flex gap-3 mb-4"><span class="tm-step-no">1</span>
+                                <div>
+                                    <h3 class="h6 mb-1">Temukan dan tawar</h3>
+                                    <p class="small text-body-secondary mb-0">Cari barang, lalu buka chat penjual untuk
+                                        menawar harga.</p>
+                                </div>
+                            </li>
+                            <li class="d-flex gap-3 mb-4"><span class="tm-step-no">2</span>
+                                <div>
+                                    <h3 class="h6 mb-1">Bayar lewat platform</h3>
+                                    <p class="small text-body-secondary mb-0">Uangmu kami tahan dulu dan belum
+                                        diteruskan ke penjual.</p>
+                                </div>
+                            </li>
+                            <li class="d-flex gap-3 mb-4"><span class="tm-step-no">3</span>
+                                <div>
+                                    <h3 class="h6 mb-1">Penjual mengirim barang</h3>
+                                    <p class="small text-body-secondary mb-0">Pantau nomor resi dari halaman pesanan.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="d-flex gap-3"><span class="tm-step-no">4</span>
+                                <div>
+                                    <h3 class="h6 mb-1">Konfirmasi diterima</h3>
+                                    <p class="small text-body-secondary mb-0">Setelah kamu cek barangnya, dana baru
+                                        diteruskan ke penjual.
+                                    </p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h2 class="h3 tm-heading mb-4">Garansi dan retur</h2>
+                        <div class="accordion tm-accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header"><button class="accordion-button" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true"><i
+                                            class="bi bi-shield-check text-success me-2"></i>Garansi uang
+                                        kembali</button></h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body small text-body-secondary">Dana ditahan sampai kamu
+                                        menekan tombol terima.
+                                        Jika barang tidak sampai, uang dikembalikan penuh.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false"><i
+                                            class="bi bi-arrow-return-left text-success me-2"></i>Retur barang</button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body small text-body-secondary">Ajukan retur dalam 3 hari
+                                        setelah barang tiba
+                                        jika tidak sesuai deskripsi atau ada cacat yang tidak disebutkan. Sertakan foto
+                                        sebagai bukti.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false"><i
+                                            class="bi bi-patch-check text-success me-2"></i>Penjual
+                                        terverifikasi</button></h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body small text-body-secondary">Penjual dengan lencana hijau
+                                        sudah memverifikasi
+                                        identitas dan punya riwayat transaksi yang baik.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="tm-footer py-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <a class="tm-logo text-white text-decoration-none" href="#beranda">thrift<span
+                    class="tm-logo-dot"></span></a>
+            <small class="text-white-50">&copy; 2026 Thrift Marketplace. Semua hak dilindungi.</small>
+        </div>
+    </footer>
+
+    <!-- ===================== MODAL: CHAT / NEGO ===================== -->
+    <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <div>
+                        <h2 class="modal-title h5 tm-heading" id="chatTitle">Chat penjual</h2>
+                        <p class="small text-body-secondary mb-0" id="chatProduct"></p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="tm-chat-log rounded-3 p-3 mb-3" id="chatLog">
+                        <div class="tm-bubble tm-bubble-seller">Halo, barangnya masih ada ya. Boleh nego sopan.</div>
+                    </div>
+                    <div id="negoBox">
+                        <p class="small fw-semibold mb-2">Tawar harga</p>
+                        <div class="d-flex flex-wrap gap-2 mb-2" id="offerChips"></div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="chatInput" placeholder="Tulis pesan atau tawaranmu"
+                            aria-label="Pesan">
+                        <button class="btn btn-primary" id="chatSend" type="button"><i class="bi bi-send"></i><span
+                                class="visually-hidden">Kirim</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== MODAL: JUAL BARANG ===================== -->
+    <div class="modal fade" id="sellModal" tabindex="-1" aria-labelledby="sellTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h2 class="modal-title h5 tm-heading" id="sellTitle">Jual barang</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <form class="needs-validation" id="sellForm" novalidate>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="sellName" class="form-label">Nama barang</label>
+                            <input type="text" class="form-control" id="sellName" required
+                                placeholder="Contoh: Jaket denim Levi's ukuran L">
+                            <div class="invalid-feedback">Isi nama barang.</div>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <label for="sellCategory" class="form-label">Kategori</label>
+                                <select class="form-select" id="sellCategory" required>
+                                    <option value="" selected disabled>Pilih kategori</option>
+                                    <option>Pakaian Pria</option>
+                                    <option>Pakaian Wanita</option>
+                                    <option>Sepatu &amp; Sneakers</option>
+                                    <option>Aksesoris</option>
+                                    <option>Elektronik</option>
+                                    <option>Buku</option>
+                                </select>
+                                <div class="invalid-feedback">Pilih kategori.</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="sellPrice" class="form-label">Harga (Rp)</label>
+                                <input type="number" class="form-control" id="sellPrice" min="1000" required
+                                    placeholder="150000">
+                                <div class="invalid-feedback">Isi harga minimal Rp1.000.</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sellPhoto" class="form-label">Foto barang</label>
+                            <input class="form-control" type="file" id="sellPhoto" accept="image/*" multiple>
+                            <div class="form-text">Tambahkan foto dari beberapa sisi, termasuk cacat jika ada.</div>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="sellNego" checked>
+                            <label class="form-check-label" for="sellNego">Terima tawar-menawar</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4">Pasang barang</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="appToast" class="toast tm-toast border-0" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMsg"></div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Tutup"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Import Bootstrap -->
+    <script type="module">
+        import * as bootstrap from "./bootstrap.bundle.min.js";
+        window.bootstrap = bootstrap;
+    </script>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
