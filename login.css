@@ -1,0 +1,75 @@
+/* ==========================================================
+   Login card – Thrift Marketplace
+   Memakai variabel warna dari style.css
+   ========================================================== */
+
+.tm-login .modal-dialog { max-width: 420px; }
+
+.tm-login-card {
+  border: 0;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(21, 48, 36, .35);
+}
+
+/* Kepala kartu: hijau hutan dengan bulatan sage & lime dari logo */
+.tm-login-head {
+  background: var(--tm-forest);
+  position: relative;
+  overflow: hidden;
+  padding: 1.75rem 1.75rem 1.5rem;
+}
+.tm-login-head::before,
+.tm-login-head::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.tm-login-head::before { width: 140px; height: 140px; right: -40px; top: -60px; background: var(--tm-sage); opacity: .35; }
+.tm-login-head::after  { width: 34px; height: 34px; right: 64px; bottom: 14px; background: var(--tm-lime); }
+.tm-login-head .btn-close { position: absolute; top: 1rem; right: 1rem; z-index: 2; }
+.tm-login-head .tm-logo { font-size: 1.6rem; margin-bottom: 1.2rem; }
+.tm-login-head h2 { position: relative; z-index: 1; }
+
+.tm-login-body { padding: 1.5rem 1.75rem 1.75rem; }
+
+.tm-login .form-control,
+.tm-login .btn-google { border-radius: .75rem; padding-top: .7rem; padding-bottom: .7rem; }
+.tm-login .input-group .form-control { border-radius: .75rem 0 0 .75rem; }
+.tm-login .input-group .btn-eye {
+  border: 1px solid var(--bs-border-color);
+  border-left: 0;
+  border-radius: 0 .75rem .75rem 0;
+  background: #fff;
+  color: var(--tm-forest);
+}
+.tm-login .input-group:focus-within .btn-eye { border-color: var(--tm-sage); }
+.tm-login .input-group .form-control.is-invalid ~ .btn-eye { border-color: var(--bs-form-invalid-border-color); }
+
+.btn-google {
+  background: #fff;
+  border: 1px solid var(--bs-border-color);
+  color: var(--tm-ink);
+  font-weight: 600;
+}
+.btn-google:hover { background: var(--tm-sage-soft); border-color: var(--tm-sage); }
+
+.tm-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--bs-secondary-color);
+  font-size: .8rem;
+  margin: 1.1rem 0;
+}
+.tm-divider::before,
+.tm-divider::after { content: ""; flex: 1; height: 1px; background: var(--bs-border-color); }
+
+/* Pesan galat di atas form */
+.tm-login .alert-tm {
+  background: #fdecea;
+  color: #8a2a21;
+  border: 0;
+  border-radius: .75rem;
+  font-size: .85rem;
+}

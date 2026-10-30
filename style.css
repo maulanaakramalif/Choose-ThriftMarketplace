@@ -257,14 +257,7 @@ body { background: var(--tm-paper); }
 .tm-cta {
   background: var(--tm-forest);
 }
-.tm-cta::before,
-.tm-cta::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-}
-.tm-cta::before { width: 280px; height: 280px; right: -60px; top: -90px; background: var(--tm-sage); opacity: .3; }
-.tm-cta::after  { width: 120px; height: 120px; right: 220px; bottom: -50px; background: var(--tm-lime); opacity: .9; }
+
 .tm-cta-badge {
   width: 150px; height: 150px;
   border-radius: 50%;
@@ -327,6 +320,4 @@ html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 .bg-select{
   background-color: #146c43
 }
-.form-select option:checked {
-  accent-color: transparent;
-}
+
