@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
+    <link rel="icon" type="image/png" href="./aset/logo-transparant.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="notification.css" rel="stylesheet">
+</head>
+
+<!-- ===================== HEADER (hanya logo) ===================== -->
+<header class="sticky-top" id="ntfHeader">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+        <div class="ms-3">
+            <a class="navbar-brand tm-logo me-lg-4 m-1" href="index.html"
+                aria-label="Thrift Marketplace – kembali ke beranda">
+                choose<span class="tm-logo-dot"></span>
+                <small class="tm-logo-sub">MARKETPLACE</small>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!-- ===================== APLIKASI NOTIFIKASI ===================== -->
+<main class="tm-ntf-app" id="ntfApp">
+    <div class="row g-0 h-100">
+
+        <!-- ---------- Daftar notifikasi ---------- -->
+        <aside class="col-12 col-md-5 col-lg-4 tm-ntf-list d-flex flex-column" aria-label="Daftar notifikasi">
+            <div class="p-3 pb-2">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="h4 mb-3">Notifikasi</h1>
+                    <button type="button" class="btn btn-sm tm-ntf-markall" id="markAllRead">
+                        <i class="bi bi-check2-all me-1"></i>Tandai semua dibaca
+                    </button>
+                </div>
+                <ul class="nav nav-pills flex-nowrap tm-ntf-tabs overflow-x-auto gap-2" id="ntfTabs">
+                    <li class="nav-item"><button class="nav-link active" type="button" data-filter="all">Semua</button>
+                    </li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-filter="unread">Belum dibaca
+                            <span class="badge rounded-pill tm-ntf-count ms-1 d-none" id="unreadTotal">0</span></button>
+                    </li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-filter="order">Pesanan</button>
+                    </li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-filter="offer">Tawaran</button>
+                    </li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-filter="wishlist">Wishlist</button>
+                    </li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-filter="info">Info</button></li>
+                </ul>
+            </div>
+            <div class="tm-ntf-scroll flex-grow-1" id="ntfList" role="list"></div>
+            <p class="text-center text-body-secondary small py-4 mb-0 d-none" id="listEmpty">Tidak ada notifikasi
+                di kategori ini.</p>
+        </aside>
+
+        <!-- ---------- Detail notifikasi ---------- -->
+        <section class="col-12 col-md-7 col-lg-8 tm-ntf-detail d-flex flex-column" aria-label="Detail notifikasi">
+
+            <!-- Belum ada yang dipilih (desktop) -->
+            <div class="m-auto text-center px-4" id="detailEmpty">
+                <span class="tm-ntf-empty-icon"><i class="bi bi-bell"></i></span>
+                <h2 class="h5 tm-heading mt-3">Pilih notifikasi</h2>
+                <p class="text-body-secondary mb-0">Pilih salah satu notifikasi di sebelah kiri untuk melihat
+                    detailnya.</p>
+            </div>
+
+            <!-- Panel detail -->
+            <div class="d-none flex-column h-100" id="detailPane">
+                <div class="tm-ntf-head d-flex align-items-center gap-3 px-3 py-2">
+                    <button class="btn btn-light rounded-circle d-md-none" type="button" id="backToList"
+                        aria-label="Kembali ke daftar"><i class="bi bi-arrow-left"></i></button>
+                    <span class="tm-ntf-icon" id="detailIcon"><i class="bi"></i></span>
+                    <div class="flex-grow-1 min-w-0">
+                        <h2 class="h6 mb-0 text-truncate" id="detailTitle"></h2>
+                        <p class="small text-body-secondary mb-0" id="detailTime"></p>
+                    </div>
+                </div>
+
+                <div class="tm-ntf-scroll flex-grow-1 p-3 p-md-4" id="detailBody">
+                    <p class="mb-4" id="detailText"></p>
+
+                    <div class="tm-ntf-card mb-4 d-none" id="detailInfoCard">
+                        <dl class="row mb-0 small" id="detailInfo"></dl>
+                    </div>
+
+                    <div class="mb-4 d-none" id="detailStepsWrap">
+                        <h3 class="h6 mb-3">Status pengiriman</h3>
+                        <ol class="list-unstyled tm-ntf-steps mb-0" id="detailSteps"></ol>
+                    </div>
+                </div>
+
+                <div class="tm-ntf-actions d-flex flex-wrap gap-2 px-3 py-3">
+                    <a href="#" class="btn btn-primary rounded-pill px-4" id="detailAction"></a>
+                    <button type="button" class="btn btn-outline-success rounded-pill" id="toggleRead"></button>
+                    <button type="button" class="btn btn-light text-danger rounded-pill ms-md-auto" id="deleteNtf">
+                        <i class="bi bi-trash3 me-1"></i>Hapus
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer class="tm-footer py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <a class="tm-logo text-white text-decoration-none" href="#beranda">choose<span class="tm-logo-dot"></span></a>
+        <small class="text-white-50">&copy; 2026 Choose Marketplace. Semua hak dilindungi.</small>
+    </div>
+</footer>
+
+
+<script src="bootstrap.bundle.min.js"></script>
+<script src="notification.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>

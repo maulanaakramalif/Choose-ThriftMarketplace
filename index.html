@@ -8,9 +8,7 @@
     <link rel="icon" type="image/png" href="./aset/logo-transparant.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="scss.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="login.css" rel="stylesheet">
+    <link href="home.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,9 +17,9 @@
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
             <div class="container">
-                <a class="navbar-brand tm-logo me-lg-4" href="#beranda"
+                <a class="navbar-brand tm-logo me-lg-4 m-1" href="#beranda"
                     aria-label="Thrift Marketplace – kembali ke beranda">
-                    thrift<span class="tm-logo-dot"></span>
+                    choose<span class="tm-logo-dot"></span>
                     <small class="tm-logo-sub">MARKETPLACE</small>
                 </a>
 
@@ -34,38 +32,23 @@
                     <button class="btn tm-icon-btn position-relative" type="button" id="btnWishlist"
                         aria-label="Wishlist">
                         <ion-icon name="heart-sharp"></ion-icon>
-                        <span class="badge rounded-pill tm-badge d-none position-absolute top-0 end-0" id="wishlistCount">0</span>
+                        <span class="badge rounded-pill tm-badge d-none position-absolute top-0 end-0"
+                            id="wishlistCount">0</span>
                     </button>
-                    <button class="btn tm-icon-btn position-relative" type="button" data-bs-toggle="modal"
-                        data-bs-target="#chatModal" data-product="Obrolan umum" data-price="" aria-label="Pesan">
+                    <button class="btn tm-icon-btn position-relative" type="button" id="btnChat">
                         <ion-icon name="chatbubbles"></ion-icon>
                         <span class="badge rounded-pill tm-badge position-absolute top-0 end-0">+99</span>
                     </button>
-                    <div class="dropdown">
-                        <button class="btn tm-icon-btn position-relative" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" aria-label="Notifikasi">
-                            <ion-icon name="chatbox-ellipses"></ion-icon>
-                            <span class="badge rounded-pill tm-badge position-absolute top-0 end-0">+99</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 tm-notif">
-                            <li>
-                                <h6 class="dropdown-header">Notifikasi</h6>
-                            </li>
-                            <li><a class="dropdown-item small text-wrap" href="#"><i
-                                        class="bi bi-tag text-success me-2"></i>Penjual
-                                    menurunkan harga Jaket Denim di wishlist kamu.</a></li>
-                            <li><a class="dropdown-item small text-wrap" href="#"><i
-                                        class="bi bi-chat-left-text text-success me-2"></i>Tawaran kamu untuk Nike Air
-                                    Max dibalas.</a></li>
-                            <li><a class="dropdown-item small text-wrap" href="#"><i
-                                        class="bi bi-truck text-success me-2"></i>Pesanan
-                                    #TM-2041 sedang dikirim.</a></li>
-                        </ul>
-                    </div>
+                    <button class="btn tm-icon-btn position-relative" type="button" id="btnNotif" aria-expanded="false"
+                        aria-label="Notifikasi">
+                        <ion-icon name="chatbox-ellipses"></ion-icon>
+                        <span class="badge rounded-pill tm-badge position-absolute top-0 end-0">+99</span>
+                    </button>
                     <button class="btn tm-icon-btn position-relative" type="button" id="btnCart"
                         aria-label="Keranjang belanja">
                         <ion-icon name="cart"></ion-icon>
-                        <span class="badge rounded-pill tm-badge d-none position-absolute top-0 end-0" id="cartCount">0</span>
+                        <span class="badge rounded-pill tm-badge d-none position-absolute top-0 end-0"
+                            id="cartCount">0</span>
                     </button>
                     <div class="dropdown">
                         <button class="btn tm-icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -419,41 +402,11 @@
     <!-- ===================== FOOTER ===================== -->
     <footer class="tm-footer py-4">
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-            <a class="tm-logo text-white text-decoration-none" href="#beranda">thrift<span
+            <a class="tm-logo text-white text-decoration-none" href="#beranda">choose<span
                     class="tm-logo-dot"></span></a>
-            <small class="text-white-50">&copy; 2026 Thrift Marketplace. Semua hak dilindungi.</small>
+            <small class="text-white-50">&copy; 2026 Choose Marketplace. Semua hak dilindungi.</small>
         </div>
     </footer>
-
-    <!-- ===================== MODAL: CHAT / NEGO ===================== -->
-    <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content border-0 rounded-4">
-                <div class="modal-header border-0 pb-0">
-                    <div>
-                        <h2 class="modal-title h5 tm-heading" id="chatTitle">Chat penjual</h2>
-                        <p class="small text-body-secondary mb-0" id="chatProduct"></p>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="tm-chat-log rounded-3 p-3 mb-3" id="chatLog">
-                        <div class="tm-bubble tm-bubble-seller">Halo, barangnya masih ada ya. Boleh nego sopan.</div>
-                    </div>
-                    <div id="negoBox">
-                        <p class="small fw-semibold mb-2">Tawar harga</p>
-                        <div class="d-flex flex-wrap gap-2 mb-2" id="offerChips"></div>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="chatInput" placeholder="Tulis pesan atau tawaranmu"
-                            aria-label="Pesan">
-                        <button class="btn btn-primary" id="chatSend" type="button"><i class="bi bi-send"></i><span
-                                class="visually-hidden">Kirim</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- ===================== MODAL: JUAL BARANG ===================== -->
     <div class="modal fade" id="sellModal" tabindex="-1" aria-labelledby="sellTitle" aria-hidden="true">
@@ -591,8 +544,7 @@
 
     <!-- Script Import Bootstrap -->
     <script src="bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-    <script src="login.js"></script>
+    <script src="home.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose</title>
+    <link rel="icon" type="image/png" href="./aset/logo-transparant.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="chat_page.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ===================== HEADER (fixed top, hanya logo) ===================== -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+            <div class="ms-3">
+                <a class="navbar-brand tm-logo me-lg-4 m-1" aria-label="Thrift Marketplace – kembali ke beranda">
+                    choose<span class="tm-logo-dot"></span>
+                    <small class="tm-logo-sub">MARKETPLACE</small>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===================== APLIKASI CHAT ===================== -->
+    <main class="tm-chat-app" id="chatApp">
+        <div class="row g-0 h-100">
+
+            <!-- ---------- Daftar penjual ---------- -->
+            <aside class="col-12 col-md-5 col-lg-4 tm-chat-list d-flex flex-column" aria-label="Daftar percakapan">
+                <div class="p-3 pb-2">
+                    <h1 class="h4 mb-3">Pesan</h1>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text bg-white border-end-0"><i
+                                class="bi bi-search text-success"></i></span>
+                        <input type="search" class="form-control border-start-0 ps-0" id="sellerSearch"
+                            placeholder="Cari penjual atau barang" aria-label="Cari percakapan">
+                    </div>
+                    <ul class="nav nav-pills tm-chat-tabs" id="chatTabs">
+                        <li class="nav-item"><button class="nav-link active" type="button"
+                                data-filter="all">Semua</button></li>
+                        <li class="nav-item"><button class="nav-link" type="button" data-filter="unread">Belum dibaca
+                                <span class="badge rounded-pill tm-unread ms-1 d-none"
+                                    id="unreadTotal">0</span></button></li>
+                    </ul>
+                </div>
+                <div class="tm-chat-scroll flex-grow-1" id="sellerList" role="list"></div>
+                <p class="text-center text-body-secondary small py-4 mb-0 d-none" id="listEmpty">Tidak ada percakapan
+                    yang cocok.</p>
+            </aside>
+
+            <!-- ---------- Percakapan ---------- -->
+            <section class="col-12 col-md-7 col-lg-8 tm-chat-conv d-flex flex-column" aria-label="Percakapan">
+
+                <!-- Belum ada yang dipilih (desktop) -->
+                <div class="m-auto text-center px-4" id="convEmpty">
+                    <span class="tm-empty-icon"><i class="bi bi-chat-dots"></i></span>
+                    <h2 class="h5 tm-heading mt-3">Pilih percakapan</h2>
+                    <p class="text-body-secondary mb-0">Pilih penjual di sebelah kiri untuk mulai menawar atau bertanya.
+                    </p>
+                </div>
+
+                <!-- Panel chat -->
+                <div class="d-none flex-column h-100" id="convPane">
+                    <div class="tm-conv-head d-flex align-items-center gap-3 px-3 py-2">
+                        <button class="btn btn-light rounded-circle d-md-none" type="button" id="backToList"
+                            aria-label="Kembali ke daftar"><i class="bi bi-arrow-left"></i></button>
+                        <span class="tm-avatar" id="convAvatar"></span>
+                        <div class="flex-grow-1 min-w-0">
+                            <h2 class="h6 mb-0 text-truncate" id="convName"></h2>
+                            <p class="small mb-0" id="convStatus"></p>
+                        </div>
+                    </div>
+
+                    <!-- Konteks produk -->
+                    <div class="tm-product-strip d-flex align-items-center gap-3 px-3 py-2">
+                        <span class="tm-product-thumb"><i class="bi" id="convProductIcon"></i></span>
+                        <div class="flex-grow-1 min-w-0">
+                            <p class="small fw-semibold mb-0 text-truncate" id="convProduct"></p>
+                            <p class="tm-price mb-0" id="convPrice"></p>
+                        </div>
+                        <a href="index.html#produk" class="btn btn-sm btn-outline-success rounded-pill">Lihat</a>
+                    </div>
+
+                    <div class="tm-chat-scroll flex-grow-1 p-3" id="messages" aria-live="polite"></div>
+
+                    <div class="tm-composer px-3 pt-2 pb-3">
+                        <div class="d-flex gap-2 overflow-auto pb-2 tm-quick" id="quickReplies"></div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="msgInput" placeholder="Tulis pesan"
+                                aria-label="Pesan" autocomplete="off">
+                            <button class="btn btn-lime fw-bold px-3" id="sendBtn" type="button" aria-label="Kirim"><i
+                                    class="bi bi-send-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="tm-footer py-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <a class="tm-logo text-white text-decoration-none" href="#beranda">choose<span
+                    class="tm-logo-dot"></span></a>
+            <small class="text-white-50">&copy; 2026 Choose Marketplace. Semua hak dilindungi.</small>
+        </div>
+    </footer>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="chat_page.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

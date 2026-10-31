@@ -1,0 +1,240 @@
+/* ==========================================================
+   Halaman notifikasi – Thrift Marketplace
+   Memakai variabel warna dari style.css (--tm-*), dengan cadangan.
+   Semua class memakai awalan .tm-ntf- agar tidak bentrok dengan
+   .tm-notif (dropdown notifikasi di navbar home) di style.css.
+   ========================================================== */
+
+:root {
+  --ntf-header-h: 64px;            /* diperbarui otomatis oleh notification.js */
+  --n-forest: var(--tm-forest, #1e4032);
+  --n-forest-deep: var(--tm-forest-deep, #153024);
+  --n-sage: var(--tm-sage, #7fa088);
+  --n-sage-soft: var(--tm-sage-soft, #e4ede6);
+  --n-lime: var(--tm-lime, #b5f500);
+  --n-paper: var(--tm-paper, #f6f9f4);
+  --tm-forest-deep: #153024;
+}
+
+
+:root {
+  --tm-forest: #1e4032;
+  --tm-forest-deep: #153024;
+  --tm-sage: #7fa088;
+  --tm-sage-soft: #e4ede6;
+  --tm-lime: #b5f500;
+  --tm-lime-hover: #a3dd00;
+  --tm-paper: #f6f9f4;
+  --tm-ink: #18271f;
+
+  /* Override variabel Bootstrap agar btn-primary, link, focus ring ikut warna logo */
+  --bs-primary: #1e4032;
+  --bs-primary-rgb: 30, 64, 50;
+  --bs-success: #2f7a4f;
+  --bs-success-rgb: 47, 122, 79;
+  --bs-link-color: #1e4032;
+  --bs-link-hover-color: #153024;
+  --bs-body-bg: var(--tm-paper);
+  --bs-body-color: var(--tm-ink);
+  --bs-body-font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  --bs-border-radius-lg: 1rem;
+}yy
+
+.min-w-0 { min-width: 0; }
+
+/* ---------- Kerangka ---------- */
+.tm-ntf-app { height: calc(100vh - var(--ntf-header-h)); height: calc(100dvh - var(--ntf-header-h)); }
+.tm-ntf-list { background: #fff; border-right: 1px solid var(--n-sage-soft); min-height: 0; height: 100%; }
+.tm-ntf-detail { background: var(--n-sage-soft); min-height: 0; height: 100%; }
+.tm-ntf-scroll { overflow-y: auto; min-height: 0; }
+
+/* Mobile: tampilkan satu panel dalam satu waktu */
+@media (max-width: 767.98px) {
+  .tm-ntf-detail { display: none !important; }
+  .tm-ntf-app.is-open .tm-ntf-list { display: none !important; }
+  .tm-ntf-app.is-open .tm-ntf-detail { display: flex !important; }
+}
+
+/* ---------- Tombol "tandai semua dibaca" ---------- */
+.tm-ntf-markall {
+  color: var(--n-forest);
+  font-weight: 600;
+  font-size: .8rem;
+  border-radius: 50rem;
+}
+.tm-ntf-markall:hover { background: var(--n-sage-soft); color: var(--n-forest); }
+.tm-ntf-markall:disabled { opacity: .45; }
+
+/* ---------- Tab filter (bisa digeser di layar sempit) ---------- */
+@media (max-width: 991.98px) {
+  .tm-ntf-tabs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, dan Opera */
+  }
+}
+
+.tm-ntf-tabs .nav-link {
+  color: var(--n-forest);
+  font-weight: 600;
+  font-size: .82rem;
+  padding: .4rem .9rem;
+  border-radius: 50rem;
+  white-space: nowrap;
+}
+.tm-ntf-tabs .nav-link.active { background: var(--n-forest); color: #fff; }
+.tm-ntf-count {
+  background: var(--n-lime);
+  color: var(--n-forest-deep);
+  font-size: .65rem;
+}
+
+/* ---------- Label kelompok tanggal ---------- */
+.tm-ntf-group {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--n-paper);
+  color: var(--n-forest);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .4rem 1rem;
+}
+
+/* ---------- Item notifikasi ---------- */
+.tm-ntf-item {
+  position: relative;
+  display: flex;
+  gap: .85rem;
+  align-items: flex-start;
+  width: 100%;
+  padding: .9rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--n-paper);
+  background: #fff;
+  text-align: left;
+  transition: background .15s;
+}
+.tm-ntf-item:hover { background: var(--n-paper); }
+.tm-ntf-item.active { background: var(--n-sage-soft); box-shadow: inset 4px 0 0 var(--n-forest); }
+.tm-ntf-item .ntf-title { font-weight: 500; font-size: .92rem; }
+.tm-ntf-item .ntf-text {
+  font-size: .82rem;
+  color: var(--bs-secondary-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tm-ntf-item .ntf-time { font-size: .72rem; color: var(--bs-secondary-color); white-space: nowrap; }
+.tm-ntf-item.is-unread .ntf-title { font-weight: 700; }
+.tm-ntf-item.is-unread .ntf-text { color: var(--n-forest); }
+.tm-ntf-dot {
+  flex: 0 0 auto;
+  width: 10px; height: 10px;
+  margin-top: .35rem;
+  border-radius: 50%;
+  background: var(--n-lime);
+  box-shadow: 0 0 0 2px var(--n-forest);
+}
+
+/* ---------- Ikon jenis notifikasi ---------- */
+.tm-ntf-icon {
+  flex: 0 0 auto;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 1.15rem;
+}
+.tm-ntf-order    { background: #d9e6dc; color: #1e4032; }
+.tm-ntf-offer    { background: #efe6d2; color: #6b5a2a; }
+.tm-ntf-wishlist { background: #f3dfe0; color: #8a2f3b; }
+.tm-ntf-info     { background: #e8ede0; color: #55702f; }
+
+/* ---------- Panel detail ---------- */
+.tm-ntf-head { background: #fff; border-bottom: 1px solid #d3e0d6; }
+.tm-ntf-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+}
+.tm-ntf-card dt { color: var(--bs-secondary-color); font-weight: 500; }
+.tm-ntf-card dd { font-weight: 600; margin-bottom: .5rem; }
+.tm-ntf-card dd:last-child, .tm-ntf-card dt:last-of-type { margin-bottom: 0; }
+
+/* Linimasa pengiriman */
+.tm-ntf-steps li {
+  position: relative;
+  display: flex;
+  gap: .85rem;
+  padding-bottom: 1.1rem;
+  font-size: .88rem;
+}
+.tm-ntf-steps li:last-child { padding-bottom: 0; }
+.tm-ntf-steps li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 9px; top: 22px; bottom: 0;
+  width: 2px;
+  background: #c3d3c7;
+}
+.tm-ntf-steps li.done:not(:last-child)::before { background: var(--n-forest); }
+.tm-ntf-step-dot {
+  flex: 0 0 auto;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #c3d3c7;
+  display: grid; place-items: center;
+  font-size: .6rem;
+  color: transparent;
+}
+.tm-ntf-steps li.done .tm-ntf-step-dot { background: var(--n-forest); border-color: var(--n-forest); color: var(--n-lime); }
+.tm-ntf-steps li.done { font-weight: 600; }
+.tm-ntf-steps li:not(.done) { color: var(--bs-secondary-color); }
+
+.tm-ntf-actions { background: #fff; border-top: 1px solid #d3e0d6; padding-bottom: max(1rem, env(safe-area-inset-bottom)) !important; }
+
+/* ---------- Kondisi kosong ---------- */
+.tm-ntf-empty-icon {
+  display: inline-grid; place-items: center;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--n-forest);
+  font-size: 2.2rem;
+}
+
+a:focus-visible, button:focus-visible { outline: 3px solid var(--n-lime); outline-offset: 2px; }
+
+/* ---------- Toast & footer ---------- */
+.tm-footer { background: var(--n-forest-deep); }
+.tm-logo-dot {
+  width: .42em; height: .42em;
+  background: var(--n-lime);
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: .06em;
+}
+.tm-logo {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: 1.7rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+  display: inline-flex;
+  align-items: baseline;
+  position: relative;
+}
+
+.tm-logo-sub {
+  position: absolute;
+  left: 0; top: 100%;
+  margin-top: 3px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: .5rem;
+  letter-spacing: .22em;
+  font-weight: 600;
+  color: var(--tm-sage);
+}
